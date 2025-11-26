@@ -1,13 +1,7 @@
-def caesar(text, shift, encrypt=True):
-    if not isinstance(shift, int):
-        return 'Shift must be an integer value.'
-
-    if shift < 1 or shift > 25:
-        return 'Shift must be an integer between 1 and 25.'
-
+def caesar(text, shift, encrypter=True):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-    if not encrypt:
+    if not encrypter:
         shift = - shift
     
     shifted_alphabet = alphabet[shift:] + alphabet[:shift]
@@ -23,24 +17,35 @@ def decrypt(text, shift):
 
 while True:
     try:
-        input_choice = input('Enter if encryption or decryption: ')
-        if (input_choice == 'encryption' or input_choice.lower() == 'encryption'):
-            encrypt = True
-        elif (input_choice == 'decryption' or input_choice.lower() == 'decryption'):
-            encrypt = False
+        input_choice = input('Enter if encryption or decryption: ').lower()
+        if input_choice == 'encryption':
+            encrypter = True
+        elif input_choice == 'decryption':
+            encrypter = False
         else:
             raise ValueError
+        pass
+        input_text = input("Enter the text to be encrypted or decrypted: ")
+        input_shift = int(input("Enter the shift of the text (1-25): "))
+        if isinstance(input_text, str) == False:
+            raise ValueError
+        if isinstance(input_shift, int) == False:
+            raise ValueError
+        if input_shift < 1 or input_shift > 25:
+            print('Shift must be an integer between 1 and 25.')
+            raise ValueError
+        
+        if (input_choice == 'encryption' or input_choice.lower() == 'encryption'):
+            print(encrypt(input_text, input_shift))
+        elif (input_choice == 'decryption' or input_choice.lower() == 'decryption'):
+            print(decrypt(input_text, input_shift))
+        
+        input_cont = input("Try again? (Y/N): ")
+        if (input_choice == 'Y' or input_choice.upper() == 'Y'):
+            pass
+        elif (input_choice == 'N' or input_choice.upper() == 'N'):
+            decrypt(input_text, input_shift)
+            print(decrypt)
     except ValueError:
         pass
-    print('Invalid input. Please try again.')
-        
-
-    try:
-        input_text = input("Enter the text to be encrypted or decrypted: ")
-    except isinstance(input_text, str) == False:
-        print('Text must be a string. Please try again. \n')
-
-    try:
-        input_shift = input("Enter the shift of the text: ")
-    except isinstance(input_text, int) == False:
-        print('Text must be an integer. Please try again. \n')
+        print('Invalid input. Please try again.')
