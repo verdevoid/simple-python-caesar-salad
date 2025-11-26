@@ -27,10 +27,6 @@ while True:
         pass
         input_text = input("Enter the text to be encrypted or decrypted: ")
         input_shift = int(input("Enter the shift of the text (1-25): "))
-        if isinstance(input_text, str) == False:
-            raise ValueError
-        if isinstance(input_shift, int) == False:
-            raise ValueError
         if input_shift < 1 or input_shift > 25:
             print('Shift must be an integer between 1 and 25.')
             raise ValueError
@@ -40,12 +36,14 @@ while True:
         elif (input_choice == 'decryption' or input_choice.lower() == 'decryption'):
             print(decrypt(input_text, input_shift))
         
-        input_cont = input("Try again? (Y/N): ")
-        if (input_choice == 'Y' or input_choice.upper() == 'Y'):
+        input_cont = input("Try again? (Y/N): ").upper()
+        if input_choice == 'Y':
             pass
-        elif (input_choice == 'N' or input_choice.upper() == 'N'):
-            decrypt(input_text, input_shift)
-            print(decrypt)
+        elif input_choice == 'N':
+            break
+        else:
+            raise ValueError
+        
     except ValueError:
         pass
         print('Invalid input. Please try again.')
