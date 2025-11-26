@@ -37,9 +37,9 @@ while True:
             print(decrypt(input_text, input_shift))
         
         input_cont = input("Try again? (Y/N): ").upper()
-        if input_choice == 'Y':
+        if input_cont == 'Y':
             pass
-        elif input_choice == 'N':
+        elif input_cont == 'N':
             break
         else:
             raise ValueError
