@@ -15,6 +15,12 @@ def caesar(text, shift, encrypt=True):
     encrypted_text = text.translate(translation_table)
     return encrypted_text
 
+def encrypt(text, shift):
+    return caesar(text, shift)
+    
+def decrypt(text, shift):
+    return caesar(text, shift, encrypt=False)
+
 while True:
     try:
         input_choice = input('Enter if encryption or decryption: ')
@@ -23,20 +29,18 @@ while True:
         elif (input_choice == 'decryption' or input_choice.lower() == 'decryption'):
             encrypt = False
         else:
-            ValueError
+            raise ValueError
     except ValueError:
-        print('Invalid input. Please try again.')
+        pass
+    print('Invalid input. Please try again.')
+        
 
     try:
         input_text = input("Enter the text to be encrypted or decrypted: ")
-        if (isinstance(input_text, not str)):
-            ValueError
-    except ValueError:
-        print('Text must be a string. Please try again.')
+    except isinstance(input_text, str) == False:
+        print('Text must be a string. Please try again. \n')
 
     try:
         input_shift = input("Enter the shift of the text: ")
-        if (isinstance(input_text, not int)):
-            ValueError
-    except ValueError:
-        print('Text must be an integer. Please try again.')
+    except isinstance(input_text, int) == False:
+        print('Text must be an integer. Please try again. \n')
